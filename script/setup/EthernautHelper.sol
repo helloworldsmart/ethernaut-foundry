@@ -6,8 +6,8 @@ import {IEthernaut} from "./IEthernaut.sol";
 import "forge-std/Test.sol";
 
 contract EthernautHelper is Script {
-    address constant HERO = 0xa350FaFF36B225B972271a259C4C394301608a6E; // NOTE CHANGE THIS TO YOUR ADDRESS
-    
+    address constant HERO = 0x5b59e4474833d52Ba39871f5811ae25E66b34011; // NOTE CHANGE THIS TO YOUR ADDRESS
+
     address constant ETHERNAUT = 0xa3e7317E591D5A0F1c605be1b3aC4D2ae56104d6;
 
     function createInstance(
@@ -23,7 +23,7 @@ contract EthernautHelper is Script {
         );
     }
 
-    function submitInstance(address challengeInstance) public returns(bool) {
+    function submitInstance(address challengeInstance) public returns (bool) {
         vm.recordLogs();
         IEthernaut(ETHERNAUT).submitLevelInstance(payable(challengeInstance));
         Vm.Log[] memory submitEntries = vm.getRecordedLogs();
@@ -34,7 +34,7 @@ contract EthernautHelper is Script {
         }
     }
 
-    function successMessage(uint256 levelNo) public returns(string memory) {
+    function successMessage(uint256 levelNo) public returns (string memory) {
         string memory message;
 
         string[] memory randMessages = new string[](7);
@@ -45,10 +45,10 @@ contract EthernautHelper is Script {
         randMessages[4] = "LEVEL SUCCESSFUL, YOU'RE A BEAST!";
         randMessages[5] = "LEVEL SUCCESSFUL, LET'S GOOO!";
         randMessages[6] = "LEVEL SUCCESSFUL, ANOTHER ONE BITES THE DUST!";
-        
+
         if (levelNo == 1) {
             message = "LEVEL SUCCESSFUL, GOOD START!";
-        } else if (levelNo == 10) { 
+        } else if (levelNo == 10) {
             message = "LEVEL SUCCESSFUL, 10 DOWN!";
         } else if (levelNo == 15) {
             message = "LEVEL SUCCESSFUL, PASSED THE HALFWAY MARK!";
